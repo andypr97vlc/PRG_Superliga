@@ -35,54 +35,50 @@ class Entrenador {
 }
 
 class Partido {
+    - int id
     - Equipo zonaAzul
     - Equipo zonaRoja
-    - String resultado
-    - String fecha
-}
-
-class Playoffs {
-    - ArrayList<Partido> partidos
-    - ArrayList<Equipo> equipos
-    - String fecha
+    - Equipo equipoGanador
+    - datetime hora
+    - String mvp
 }
 
 class Jornada {
+    - int numero
     - ArrayList<Partido> partidos
-    - String fecha
+    - date fecha
+    - enum tipo
 }
 
-class Clasificacion {
-    - ArrayList<Equipo> equipos
-    - ArrayList<Jugador> jugadores
+enum TipoJornada {
+    REGULAR
+    CUARTOS
+    SEMIS
+    FINALES
 }
 
-class Liga {
-    - ArrayList<Jornada> jornadas
-    - ArrayList<Equipo> equipos
-    - ArrayList<Jugador> jugadores
-    - ArrayList<Partido> playoffs
-    - ArrayList<Classificacion> clasificaciones
-    - String fechaInicio
-    - String fechaFin
+class Temporada {
+    - date año
+    - String split
+    - ArrayList<Clasificacion> clasificacion
+    - String[][] jornadas
 }
 
 Jugador -down-> "5" Equipo : titulares
 Jugador -down-> "*" Equipo : reservas
 Jugador -right-> "1" Posicion : posicion
-Jugador -right-> Clasificacion : clasifican
 
 Equipo -down-> Partido : juega
 Equipo "1" <-down- Entrenador : entrena
-Equipo -right-> Clasificacion : clasifican
 
-Partido -down- Playoffs : pueden ser
+Jornada -up-> TipoJornada : tipo
+
 Partido -left-> Jornada : pertenece
 
-Liga -right-> Jornada : tiene
-Liga -right-> Partido : tiene
-Liga <-right- Jugador : juegan
-Liga <-right- Equipo : juegan
+Temporada -right-> Jornada : tiene
+Temporada -right-> Partido : tiene
+Temporada <-right- Jugador : juegan
+Temporada <-right- Equipo : juegan
 
 @enduml
 ```
