@@ -13,6 +13,10 @@ public class Jugador {
         this.posicion = posicion;
     }
 
+    public String printAllNickname(){
+        return this.nombre + " \"" + this.nickName + "\" " + this.apellido;
+    }
+
     public String getNombre() {
         return nombre;
     }

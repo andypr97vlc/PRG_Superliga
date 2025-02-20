@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Equipo {
     private String nombre;
@@ -7,12 +8,52 @@ public class Equipo {
     private ArrayList<Jugador> reservas = new ArrayList<>();
     private Entrenador entrenador;
 
+    public Equipo(String tag, String nombre) {
+        this.tag = tag;
+        this.nombre = nombre;
+    }
+
     public Equipo(String nombre, String tag, ArrayList<Jugador> titulares, ArrayList<Jugador> reservas, Entrenador entrenador) {
         this.nombre = nombre;
         this.tag = tag;
         this.titulares = titulares;
         this.reservas = reservas;
         this.entrenador = entrenador;
+    }
+
+    public void printAlineacion() {
+        // Ordenar listas de jugadores
+        titulares.sort(Comparator.comparing(jugador -> jugador.getPosicion().ordinal()));
+        reservas.sort(Comparator.comparing(jugador -> jugador.getPosicion().ordinal()));
+
+        // Imprimir jugadores
+        int anchoJugador = 35;
+        int anchoPosicion = 5;
+        System.out.println("··· " + getNombre() + " ···");
+        System.out.printf("%-" + anchoJugador + "s%-" + anchoPosicion + "s%n", "JUGADORES TITULARES", "POSICIÓN");
+        System.out.println("---------------------------------------------");
+        for (Jugador jugador : titulares) {
+            System.out.printf("%-" + anchoJugador + "s%-" + anchoPosicion + "s%n", jugador.printAllNickname(), jugador.getPosicion());
+        }
+        System.out.println("=============================================");
+        System.out.printf("%-" + anchoJugador + "s%-" + anchoPosicion + "s%n", "JUGADORES RESERVAS", "POSICIÓN");
+        System.out.println("---------------------------------------------");
+        for (Jugador jugador : reservas) {
+            System.out.printf("%-" + anchoJugador + "s%-" + anchoPosicion + "s%n", jugador.printAllNickname(), jugador.getPosicion());
+        }
+        System.out.println();
+    }
+
+    public void agregarTitulares(Jugador jugador){
+        this.titulares.add(jugador);
+    }
+
+    public void agregarReservas(Jugador jugador){
+        this.reservas.add(jugador);
+    }
+
+    public String printTagEquipo() {
+        return "[" + this.tag + "]" + this.nombre;
     }
 
     public String getNombre() {
