@@ -11,6 +11,10 @@ public class Entrenador {
         this.nickName = nickname;
     }
 
+    public String printAllNickname(){
+        return this.nombre + " \"" + this.nickName + "\" " + this.apellido;
+    }
+
     public String getNombre() {
         return nombre;
     }

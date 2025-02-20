@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 
+
 public class Equipo {
     private String nombre;
     private String tag;
@@ -35,6 +36,8 @@ public class Equipo {
         for (Jugador jugador : titulares) {
             System.out.printf("%-" + anchoJugador + "s%-" + anchoPosicion + "s%n", jugador.printAllNickname(), jugador.getPosicion());
         }
+        System.out.println("============================================="); // Añadir el entrenador
+        System.out.println("ENTRENADOR\n" + this.entrenador.printAllNickname());
         System.out.println("=============================================");
         System.out.printf("%-" + anchoJugador + "s%-" + anchoPosicion + "s%n", "JUGADORES RESERVAS", "POSICIÓN");
         System.out.println("---------------------------------------------");
